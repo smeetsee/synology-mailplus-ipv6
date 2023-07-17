@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+  haproxy:
+    image: haproxy:alpine
+    container_name: haproxy-mailplus6
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - /usr/local/etc/certificate/MailPlus-Server/postfix/privkey_fullchain.pem:/usr/local/etc/certificate/MailPlus-Server/postfix/privkey_fullchain.pem:ro
+    network_mode: host
+    user: root
+    restart: unless-stopped
